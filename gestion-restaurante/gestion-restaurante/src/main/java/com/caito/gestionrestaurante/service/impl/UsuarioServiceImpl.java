@@ -123,4 +123,20 @@ public class UsuarioServiceImpl implements UsuarioService {
         response.setContent(us);
         return response;
     }
+
+    @Override
+    public void cambiarRol(Long userId) {
+        logger.info("inicio servicio cambio rol");
+        if(!autorizacionService.authorize(RoleName.ROLE_ADMIN))
+            throw new NotAuthorizeExcepcion("no autorizado");
+        Usuario usuario = usuarioRepository.findById(userId).orElseThrow(()->{
+            logger.error("usuario no encontrado");
+            throw new NotFoundException("usuario no encontrado");
+        });
+        Rol rol = rolService.getByRolNombre(RoleName.ROLE_USER);
+        List<Rol> roles = new ArrayList<>();
+        roles.add(rol);
+        usuario.setRoles(roles);
+        usuarioRepository.save(usuario);
+    }
 }

@@ -9,4 +9,5 @@ public interface UsuarioService {
     void deleteUsuario(Long id);
     JwtDTO login(LogginDTO dto);
     PageableResponseDTO verTodos(int page, int size);
+    void cambiarRol(Long userId);
 }

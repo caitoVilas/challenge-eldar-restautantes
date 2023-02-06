@@ -28,7 +28,6 @@ public class CategoriaController {
 
     @PostMapping
     @Operation(description = "creacion de categorias", summary = "creacion de categorias")
-    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "created"),
             @ApiResponse(responseCode = "401", description = "unauthorized"),

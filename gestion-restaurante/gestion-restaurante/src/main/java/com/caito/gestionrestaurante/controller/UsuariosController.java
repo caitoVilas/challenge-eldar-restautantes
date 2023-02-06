@@ -61,4 +61,17 @@ public class UsuariosController {
             return ResponseEntity.noContent().build();
         return ResponseEntity.ok(usuarios);
     }
+
+    @PatchMapping("/cambiar-rol/{usuarioId}")
+    @Operation(description = "cabiar rol a usuario", summary = "camiar rol a usuario")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "ok"),
+            @ApiResponse(responseCode = "404", description = "not found"),
+            @ApiResponse(responseCode = "401", description = "unauthorized"),
+            @ApiResponse(responseCode = "500", description = "server error")
+    })
+    public ResponseEntity<?> cambiarRol(@PathVariable Long usuarioId){
+        usuarioService.cambiarRol(usuarioId);
+        return ResponseEntity.ok(null);
+    }
 }
